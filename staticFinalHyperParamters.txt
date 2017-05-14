@@ -1,0 +1,46 @@
+        self.final_clfs = {
+            'Performance':  LinearSVC(class_weight="balanced", C=1.0, loss = "hinge", max_iter=1000, penalty="l2"),
+            'Usability':  LinearSVC(class_weight="balanced", C=1.0, loss = "hinge", max_iter=1000, penalty="l2"),            
+            'Security': SGDClassifier(alpha=.0001, n_iter=2000, 
+                                          epsilon=0.5, loss='log',penalty="l2", 
+                                          power_t=0.5, warm_start=False, shuffle=True, class_weight='balanced'),
+            'Bug':SGDClassifier(alpha=.001, n_iter=100, 
+                                          epsilon=0.5, loss='squared_hinge',penalty="l2", 
+                                          power_t=0.1, warm_start=False, shuffle=True, class_weight='balanced'),
+            'Community':LinearSVC(class_weight="balanced", C=10.0, loss = "squared_hinge", max_iter=1000, penalty="l2"),
+            "Compatibility":LinearSVC(class_weight="balanced", C=1.0, loss = "hinge", max_iter=1000, penalty="l2"),
+            "Documentation": LinearSVC(class_weight="balanced", C=20.0, loss = "squared_hinge", max_iter=1000, penalty="l2"),
+            "Legal":SGDClassifier(alpha=.0001, epsilon=0.5, loss='hinge', 
+                                  n_iter=50,penalty="l2", power_t=0.5, shuffle=True,warm_start=False, class_weight='balanced'),
+            
+            "Portability":LinearSVC(class_weight="balanced", C=1.0, loss = "hinge", max_iter=1000, penalty="l2"),           
+            "OnlySentiment":LinearSVC(class_weight="balanced", C=1.0, loss = "squared_hinge", max_iter=1000, penalty="l2"),            
+            "Others":LinearSVC(class_weight="balanced", C=1.0, loss = "hinge", max_iter=1000, penalty="l2"),       
+         }
+
+        self.final_vects = {
+            'Performance':  CountVectorizer(ngram_range = (1,2), token_pattern = r'\b\w+\b', min_df = 1), 
+            'Usability':  CountVectorizer(ngram_range = (1,2), token_pattern = r'\b\w+\b', min_df = 1),
+            'Security':  CountVectorizer(stop_words = 'english'),    
+            'Bug':CountVectorizer(stop_words = 'english'),
+            'Community':  CountVectorizer(stop_words = 'english'),
+            "Compatibility":CountVectorizer(ngram_range = (1,3), token_pattern = r'\b\w+\b', min_df = 1),
+            "Documentation": CountVectorizer(ngram_range = (1,2), token_pattern = r'\b\w+\b', min_df = 1),
+            "Legal": CountVectorizer(stop_words = 'english'),
+            "Portability":  CountVectorizer(stop_words = 'english'), 
+            "OnlySentiment":CountVectorizer(ngram_range = (1,2), token_pattern = r'\b\w+\b', min_df = 1), 
+            "Others": CountVectorizer(stop_words = 'english'),
+            }
+        self.final_tfidfs = {
+            'Performance':  TfidfVectorizer(sublinear_tf=True, max_df=.5, stop_words='english', norm="l2"),
+            'Usability':  TfidfVectorizer(sublinear_tf=True, max_df=.5, stop_words='english', norm="l2"),
+            'Security': TfidfVectorizer(sublinear_tf=True, max_df=.5, stop_words='english'),    
+            'Bug':TfidfVectorizer(sublinear_tf=True, max_df=.5, stop_words='english'),
+            'Community':  TfidfVectorizer(sublinear_tf=True, max_df=.5, stop_words='english', norm="l2"),
+            "Compatibility":TfidfVectorizer(sublinear_tf=True, max_df=.5, stop_words='english', norm="l1"),
+            "Documentation": TfidfVectorizer(sublinear_tf=True, max_df=.5, stop_words='english', norm="l2"),
+            "Legal": TfidfVectorizer(sublinear_tf=True, max_df=.5, stop_words='english'),
+            "Portability": TfidfVectorizer(sublinear_tf=True, max_df=.5, stop_words='english', norm="l2"), 
+            "OnlySentiment":TfidfVectorizer(sublinear_tf=True, max_df=.5, stop_words='english', norm="l1"), 
+            "Others": TfidfVectorizer(sublinear_tf=True, max_df=.5, stop_words='english', norm="l2"),
+            }
